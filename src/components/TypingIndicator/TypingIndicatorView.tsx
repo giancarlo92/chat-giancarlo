@@ -1,10 +1,11 @@
+import React from 'react';
 import { motion } from 'framer-motion';
+import type { TypingIndicatorProps } from './TypingIndicatorTypes';
+import { useTypingIndicator } from './TypingIndicatorLogic';
 
-interface TypingIndicatorProps {
-  isBot?: boolean;
-}
-
-export default function TypingIndicator({ isBot = false }: TypingIndicatorProps) {
+export default function TypingIndicatorView(props: TypingIndicatorProps) {
+  const { isBot } = useTypingIndicator(props);
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
