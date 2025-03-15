@@ -125,4 +125,4 @@ Estoy buscando oportunidades **100% remotas** donde pueda aplicar mis conocimien
 ];
 
 // Variable global para el delay de tipeo
-export const TYPING_DELAY = 1000;
+export const TYPING_DELAY = 2000;
