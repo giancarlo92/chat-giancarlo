@@ -6,6 +6,10 @@ import { chatData } from '../../data/chatData';
 import TypingIndicator from '../TypingIndicator';
 import type { ChatWindowProps } from './ChatWindowTypes';
 import { useChatWindow } from './ChatWindowLogic';
+import '../../styles/darkMode.css';
+import '../../styles/chatDarkMode.css';
+import '../../styles/forceDarkMode.css';
+import '../../styles/modernScroll.css';
 import '../../styles/chatStyles.css';
 
 export default function ChatWindowView(props: ChatWindowProps) {
@@ -29,7 +33,7 @@ export default function ChatWindowView(props: ChatWindowProps) {
       </div>
 
       <div 
-        className="chat-messages" 
+        className="chat-messages custom-scrollbar" 
         ref={chatMessagesRef}
         onScroll={handleScroll}
       >
@@ -52,7 +56,7 @@ export default function ChatWindowView(props: ChatWindowProps) {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bot-message ml-auto"
+                  className="bot-message"
                 >
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {message.answer}
@@ -78,7 +82,7 @@ export default function ChatWindowView(props: ChatWindowProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           onSubmit={handleSubmit}
-          className="p-4 border-t bg-white"
+          className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 transition-colors duration-300"
         >
           <div className="flex gap-2">
             <input
@@ -86,12 +90,12 @@ export default function ChatWindowView(props: ChatWindowProps) {
               value={userInput}
               onChange={handleInputChange}
               placeholder="Hazme una pregunta..."
-              className="flex-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50"
+              className="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"
               disabled={isTypingQuestion || isTypingAnswer}
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:opacity-90"
+              className="send-button px-6 py-3 rounded-xl hover:opacity-90 transition-colors duration-300"
               disabled={isTypingQuestion || isTypingAnswer}
             >
               Enviar

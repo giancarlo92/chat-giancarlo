@@ -1,0 +1,147 @@
+/* Estilos para un scroll moderno que cambia según el modo claro/oscuro */
+
+/* Estilo base para el scroll en modo claro */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(243, 244, 246, 0.6);
+  border-radius: 10px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3245ff, #bc52ee);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2a3ad9, #a646d9);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Estilos para el scroll en modo oscuro */
+html.dark ::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #4338ca, #7c3aed);
+  background-clip: padding-box;
+}
+
+/* Estilos específicos para el área de mensajes del chat */
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 4px;
+  border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3245ff, #bc52ee);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2a3ad9, #a646d9);
+  background-clip: padding-box;
+}
+
+/* Estilos para el área de mensajes en modo oscuro */
+html.dark .chat-messages::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+html.dark .chat-messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+html.dark .chat-messages::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #4338ca, #7c3aed);
+  background-clip: padding-box;
+}
+
+/* Clase personalizada para aplicar a elementos específicos */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(243, 244, 246, 0.4);
+  border-radius: 10px;
+  margin: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3245ff, #bc52ee);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+html.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Estilo para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3245ff transparent;
+}
+
+html.dark * {
+  scrollbar-color: #4f46e5 transparent;
+}
+
+/* Animación sutil para el scroll */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+::-webkit-scrollbar-thumb {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Asegurarse de que el scroll sea visible pero no intrusivo */
+@media (hover: hover) {
+  ::-webkit-scrollbar {
+    opacity: 0.7;
+  }
+  
+  ::-webkit-scrollbar:hover {
+    opacity: 1;
+  }
+}

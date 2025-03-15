@@ -1,0 +1,73 @@
+/* Estilos específicos para el modo oscuro del chat */
+
+/* Contenedor principal del chat */
+html.dark .chat-container {
+  background-color: #1e293b !important; /* slate-800 */
+  color: #f8fafc !important; /* slate-50 */
+  border-color: #334155 !important; /* slate-700 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Cabecera del chat */
+html.dark .chat-header {
+  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important; /* indigo-600 a violet-500 */
+}
+
+/* Área de mensajes */
+html.dark .chat-messages {
+  background-color: #0f172a !important; /* slate-900 */
+  border-color: #334155 !important; /* slate-700 */
+}
+
+/* Mensajes del usuario */
+html.dark .user-message {
+  background-color: #1e293b !important; /* slate-800 */
+  color: #f8fafc !important; /* slate-50 */
+  border: 1px solid #334155 !important; /* slate-700 */
+}
+
+/* Mensajes del bot */
+html.dark .bot-message {
+  background-color: #4f46e5 !important; /* indigo-600 */
+  color: white !important;
+}
+
+/* Formulario de entrada */
+html.dark form {
+  background-color: #1e293b !important; /* slate-800 */
+  border-color: #334155 !important; /* slate-700 */
+}
+
+/* Campo de entrada de texto */
+html.dark input[type="text"] {
+  background-color: #0f172a !important; /* slate-900 */
+  color: #f8fafc !important; /* slate-50 */
+  border-color: #334155 !important; /* slate-700 */
+}
+
+/* Botón de enviar */
+html.dark .send-button {
+  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important; /* indigo-600 a violet-500 */
+  color: white !important;
+}
+
+/* Botones en general */
+html.dark button {
+  background-color: #1e293b !important; /* slate-800 */
+  color: #f8fafc !important; /* slate-50 */
+  border-color: #334155 !important; /* slate-700 */
+}
+
+/* Excepción para el botón de enviar */
+html.dark button.send-button {
+  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important; /* indigo-600 a violet-500 */
+}
+
+/* Indicador de escritura */
+html.dark .typing-indicator {
+  color: #cbd5e1 !important; /* slate-300 */
+}
+
+html.dark .typing-dot {
+  background-color: #cbd5e1 !important; /* slate-300 */
+}

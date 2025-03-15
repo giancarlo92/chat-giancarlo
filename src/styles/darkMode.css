@@ -1,0 +1,122 @@
+/* Estilos para el modo oscuro */
+
+:root {
+  --color-bg-primary: 255, 255, 255; /* blanco */
+  --color-bg-secondary: 249, 250, 251; /* gris muy claro */
+  --color-text-primary: 17, 24, 39; /* casi negro */
+  --color-text-secondary: 107, 114, 128; /* gris */
+  --color-accent-primary: 50, 69, 255; /* indigo - #3245ff */
+  --color-accent-secondary: 188, 82, 238; /* violeta - #bc52ee */
+  --color-border: 229, 231, 235; /* gris claro */
+  --color-message-user: 243, 244, 246; /* gris muy claro */
+  --color-message-bot: 50, 69, 255; /* indigo - #3245ff */
+}
+
+html.dark {
+  --color-bg-primary: 15, 23, 42; /* slate-900 */
+  --color-bg-secondary: 30, 41, 59; /* slate-800 */
+  --color-text-primary: 248, 250, 252; /* slate-50 */
+  --color-text-secondary: 203, 213, 225; /* slate-300 */
+  --color-accent-primary: 79, 70, 229; /* indigo-600 */
+  --color-accent-secondary: 139, 92, 246; /* violeta-500 */
+  --color-border: 51, 65, 85; /* slate-700 */
+  --color-message-user: 30, 41, 59; /* slate-800 */
+  --color-message-bot: 79, 70, 229; /* indigo-600 */
+}
+
+/* Estilos de componentes */
+.chat-container {
+  background-color: rgb(var(--color-bg-primary));
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.chat-header {
+  background: linear-gradient(to right, rgb(var(--color-accent-primary)), rgb(var(--color-accent-secondary)));
+  padding: 1rem;
+  color: white;
+}
+
+.chat-messages {
+  padding: 1rem;
+  height: 24rem;
+  overflow-y: auto;
+  background-color: rgb(var(--color-bg-secondary));
+  transition: background-color 0.3s;
+}
+
+.user-message {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(var(--color-message-user), 1);
+  color: rgb(var(--color-text-primary));
+  max-width: 80%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bot-message {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(var(--color-message-bot), 1);
+  color: white;
+  max-width: 80%;
+  margin-left: auto;
+  transition: background-color 0.3s;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  color: rgb(var(--color-text-secondary));
+}
+
+.typing-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0 0.125rem;
+  background-color: rgb(var(--color-text-secondary));
+  border-radius: 9999px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Asegurar que los botones y elementos de formulario también respeten el modo oscuro */
+input, textarea, select {
+  background-color: rgb(var(--color-bg-primary));
+  color: rgb(var(--color-text-primary));
+  border-color: rgb(var(--color-border));
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Estilos específicos para el botón de enviar */
+.send-button {
+  background: linear-gradient(to right, rgb(var(--color-accent-primary)), rgb(var(--color-accent-secondary)));
+  color: white;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  transition: opacity 0.3s;
+}
+
+.send-button:hover {
+  opacity: 0.9;
+}

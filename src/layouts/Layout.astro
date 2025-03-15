@@ -4,6 +4,11 @@ interface Props {
 }
 
 const { title = "Giancarlo Zevallos - AI Engineer & Automation Expert" } = Astro.props;
+import ThemeToggle from '../components/ThemeToggle';
+import '../styles/darkMode.css';
+import '../styles/chatDarkMode.css';
+import '../styles/forceDarkMode.css';
+import '../styles/modernScroll.css';
 ---
 
 <!doctype html>
@@ -15,25 +20,75 @@ const { title = "Giancarlo Zevallos - AI Engineer & Automation Expert" } = Astro
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content="AI Engineer & Automation Expert with expertise in chatbots, LLMs, and process optimization" />
+    <script is:inline>
+      // Script para inicializar el tema al cargar la página
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
-  <body>
+  <body class="transition-colors duration-300 bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100">
+    <div class="fixed top-4 right-4 z-50">
+      <ThemeToggle client:load />
+    </div>
     <slot />
+    
+    <script is:inline>
+      // Asegurarse de que el modo oscuro se aplique correctamente después de la carga
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      });
+      
+      // Observar cambios en el tema
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'class') {
+            const isDark = document.documentElement.classList.contains('dark');
+            document.querySelectorAll('.chat-container, .user-message, .bot-message, .chat-messages, input, button')
+              .forEach(el => {
+                // Forzar reflow para aplicar los estilos
+                el.style.display = 'none';
+                el.offsetHeight; // Forzar reflow
+                el.style.display = '';
+              });
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, { attributes: true });
+    </script>
   </body>
 </html>
 
 <style is:global>
+  /* Estilos globales */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Variables CSS para colores principales */
   :root {
     --primary: #3245ff;
     --secondary: #bc52ee;
   }
-  
-  html {
-    font-family: system-ui, sans-serif;
-    background: #f6f6f6;
-  }
 
-  body {
-    margin: 0;
-    padding: 0;
+  /* Asegurarse de que las transiciones sean suaves */
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  
+  /* Forzar el modo oscuro cuando la clase dark está presente */
+  html.dark {
+    color-scheme: dark;
   }
 </style>

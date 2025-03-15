@@ -1,0 +1,66 @@
+/* Estilos forzados para el modo oscuro */
+
+/* Aplicar estilos solo cuando la clase dark está presente en el html */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Contenedor principal del chat */
+html.dark .chat-container {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Cabecera del chat */
+html.dark .chat-header {
+  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important;
+}
+
+/* Área de mensajes */
+html.dark .chat-messages {
+  background-color: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+/* Mensajes del usuario */
+html.dark .user-message {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+/* Mensajes del bot */
+html.dark .bot-message {
+  background-color: #4f46e5 !important;
+  color: white !important;
+}
+
+/* Formulario de entrada */
+html.dark form {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Campo de entrada de texto */
+html.dark input[type="text"] {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+/* Botón de enviar */
+html.dark .send-button {
+  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important;
+  color: white !important;
+}
+
+/* Indicador de escritura */
+html.dark .typing-indicator {
+  color: #cbd5e1 !important;
+}
+
+html.dark .typing-dot {
+  background-color: #cbd5e1 !important;
+}
