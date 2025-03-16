@@ -2,17 +2,26 @@
 export interface ChatQA {
   question: string;
   answer?: string;
+  icon?: string;
+  color?: string;
 }
+
+// Tiempo de espera para simular el typing
+export const TYPING_DELAY = 1500;
 
 // Array de preguntas y respuestas
 export const chatData: ChatQA[] = [
   {
     question: '¿Cuál es tu nombre?',
-    answer: 'Giancarlo Zevallos Lecca'
+    answer: 'Giancarlo Zevallos Lecca',
+    icon: 'user',
+    color: '#3245ff'
   },
   {
     question: '¿A qué te dedicas?',
-    answer: 'Soy un AI Engineer y especialista en automatización con más de 8 años de experiencia en desarrollo de software. Me especializo en soluciones de IA, chatbots y optimización de procesos. Actualmente busco oportunidades 100% remotas donde pueda aplicar mis conocimientos.'
+    answer: 'Soy un AI Engineer y especialista en automatización con más de 8 años de experiencia en desarrollo de software. Me especializo en soluciones de IA, chatbots y optimización de procesos. Actualmente busco oportunidades 100% remotas donde pueda aplicar mis conocimientos.',
+    icon: 'briefcase',
+    color: '#bc52ee'
   },
   {
     question: '¿En qué te especializas?',
@@ -24,7 +33,9 @@ export const chatData: ChatQA[] = [
 * **Integración de IA** con aplicaciones propias o de terceros
 * **Creación de chatbots** conversacionales
 * **Desarrollo de software** a medida
-  `
+  `,
+    icon: 'code',
+    color: '#3245ff'
   },
   {
     question: '¿Cuántos años de experiencia tienes?',
@@ -36,7 +47,9 @@ export const chatData: ChatQA[] = [
 * **1 año** especializado en soluciones de IA y automatización
 * **Actual:** Software Developer en Digital Preventor (desde julio 2023)
 * **Freelance:** Especialista en automatización con IA (desde enero 2024)
-  `
+  `,
+    icon: 'clock',
+    color: '#bc52ee'
   },
   {
     question: '¿Dónde estudiaste?',
@@ -49,11 +62,14 @@ export const chatData: ChatQA[] = [
 * **Diplomaturas:**
   * Desarrollo Visual Studio C#
   * Transact-SQL Server (Cibertec)
-  `
+  `,
+    icon: 'academic-cap',
+    color: '#3245ff'
   },
   {
     question: '¿En qué proyectos has trabajado?',
-    answer: `He trabajado en diversos proyectos destacados como la automatización de procesos con IA para el sector educativo, desarrollo de plataformas integradas para análisis de datos en tiempo real, y actualmente mantengo un canal educativo en YouTube enfocado en herramientas de inteligencia artificial.
+    answer: `He trabajado en diversos proyectos a lo largo de mi carrera, desde el desarrollo de aplicaciones web hasta la implementación de soluciones de automatización con IA.
+
 ## Proyectos Destacados
 
 1. **Automatización con IA para sector educativo**
@@ -67,11 +83,14 @@ export const chatData: ChatQA[] = [
 3. **Canal educativo en YouTube**
    * Contenido sobre herramientas de IA
    * Tutoriales y casos prácticos
-  `
+  `,
+  icon: 'folder',
+  color: '#bc52ee'
   },
   {
     question: '¿Cuáles son tus habilidades técnicas?',
-    answer: `Tengo experiencia en tecnologías de Microsoft como .NET C#, SQL Server y TypeScript. También manejo Azure para cómputo en la nube, implementación de microservicios, y desarrollo avanzado en HTML, CSS y JavaScript. Además, tengo conocimientos básicos de Python para automatización.
+    answer: `Cuento con un amplio conjunto de habilidades técnicas que me permiten desarrollar soluciones completas y eficientes.
+
 ## Habilidades Técnicas
 
 ### Microsoft Stack
@@ -86,11 +105,14 @@ export const chatData: ChatQA[] = [
 
 ### Otros
 * Python (automatización)
-  `
+  `,
+  icon: 'chip',
+  color: '#3245ff'
   },
   {
     question: '¿Qué idiomas hablas?',
-    answer: `Hablo español nativo, portugués avanzado e inglés intermedio, lo que me permite colaborar en equipos internacionales.
+    answer: `Domino varios idiomas que me permiten comunicarme eficazmente en entornos internacionales.
+
 ## Idiomas
 
 | Idioma | Nivel |
@@ -98,21 +120,26 @@ export const chatData: ChatQA[] = [
 | Español | Nativo |
 | Portugués | Avanzado |
 | Inglés | Intermedio |
-  `
+  `,
+    icon: 'globe',
+    color: '#bc52ee'
   },
   {
     question: '¿Cómo puedo contactarte?',
-    answer: `
+    answer: `Puedes contactarme a través de varios canales:
+
 ## Información de Contacto
 
-* **Email:** [giancarlo.zevallos.lecca@gmail.com](mailto:giancarlo.zevallos.lecca@gmail.com)
-* **Teléfono:** +351 913 691 603
-* **LinkedIn:** [Perfil de LinkedIn](https://linkedin.com)
-* **YouTube:** [Canal sobre IA](https://youtube.com)
-  `
+* **Email:** giancarlo.zevallos.lecca@gmail.com
+* **LinkedIn:** [linkedin.com/in/giancarlo-zevallos](https://www.linkedin.com/in/giancarlo-zevallos)
+* **YouTube:** [youtube.com/@giancarlozevallos](https://www.youtube.com/@giancarlozevallos)
+  `,
+    icon: 'envelope',
+    color: '#3245ff'
   },
   {
-    question: `## ¡Gracias por la charla!
+    question: '¿Algo más que quieras compartir?',
+    answer: `## ¡Gracias por la charla!
 
 Si quieres saber más, puedes preguntarme sobre:
 
@@ -120,9 +147,9 @@ Si quieres saber más, puedes preguntarme sobre:
 * Proyectos en los que he trabajado
 * Cómo podría contribuir a tu equipo
 
-Estoy buscando oportunidades **100% remotas** donde pueda aplicar mis conocimientos en IA y automatización.`
+¡Espero tener noticias tuyas pronto!
+  `,
+    icon: 'chat',
+    color: '#bc52ee'
   }
 ];
-
-// Variable global para el delay de tipeo
-export const TYPING_DELAY = 2000;

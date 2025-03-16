@@ -1,73 +1,168 @@
-/* Estilos específicos para el modo oscuro del chat */
+/* Estilos específicos para el modo oscuro en el chat */
 
-/* Contenedor principal del chat */
-html.dark .chat-container {
-  background-color: #1e293b !important; /* slate-800 */
-  color: #f8fafc !important; /* slate-50 */
-  border-color: #334155 !important; /* slate-700 */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+/* Forzar modo oscuro en todo el chat */
+.dark .chat-page,
+.dark .chat-content,
+.dark .user-message,
+.dark .bot-message,
+.dark .chat-input,
+.dark .send-button,
+.dark .typing-indicator,
+.dark .navigation-icon-item,
+.dark .social-icon {
+  transition: all 0.3s ease;
 }
 
-/* Cabecera del chat */
-html.dark .chat-header {
-  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important; /* indigo-600 a violet-500 */
+/* Estilos para el contenedor principal */
+.dark .chat-page {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
 }
 
-/* Área de mensajes */
-html.dark .chat-messages {
-  background-color: #0f172a !important; /* slate-900 */
-  border-color: #334155 !important; /* slate-700 */
+/* Estilos para los mensajes del usuario */
+.dark .user-message {
+  background-color: #1e293b !important;
+  color: #f9fafb !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Mensajes del usuario */
-html.dark .user-message {
-  background-color: #1e293b !important; /* slate-800 */
-  color: #f8fafc !important; /* slate-50 */
-  border: 1px solid #334155 !important; /* slate-700 */
+.dark .message-title {
+  color: #f9fafb !important;
 }
 
-/* Mensajes del bot */
-html.dark .bot-message {
-  background-color: #4f46e5 !important; /* indigo-600 */
-  color: white !important;
+/* Estilos para los mensajes del bot */
+.dark .bot-message {
+  background-color: #3245ff !important;
+  color: #ffffff !important;
 }
 
-/* Formulario de entrada */
-html.dark form {
-  background-color: #1e293b !important; /* slate-800 */
-  border-color: #334155 !important; /* slate-700 */
+/* Estilos para el botón de colapsar */
+.dark .collapse-button {
+  color: #d1d5db !important;
 }
 
-/* Campo de entrada de texto */
-html.dark input[type="text"] {
-  background-color: #0f172a !important; /* slate-900 */
-  color: #f8fafc !important; /* slate-50 */
-  border-color: #334155 !important; /* slate-700 */
+.dark .collapse-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Botón de enviar */
-html.dark .send-button {
-  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important; /* indigo-600 a violet-500 */
-  color: white !important;
+/* Estilos para el formulario de entrada */
+.dark .chat-input-form {
+  border-color: #374151 !important;
 }
 
-/* Botones en general */
-html.dark button {
-  background-color: #1e293b !important; /* slate-800 */
-  color: #f8fafc !important; /* slate-50 */
-  border-color: #334155 !important; /* slate-700 */
+.dark .chat-input {
+  background-color: #1e293b !important;
+  color: #f9fafb !important;
+  border-color: #374151 !important;
 }
 
-/* Excepción para el botón de enviar */
-html.dark button.send-button {
-  background: linear-gradient(to right, #4f46e5, #8b5cf6) !important; /* indigo-600 a violet-500 */
+.dark .chat-input:focus {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
 }
 
-/* Indicador de escritura */
-html.dark .typing-indicator {
-  color: #cbd5e1 !important; /* slate-300 */
+.dark .chat-input::placeholder {
+  color: #9ca3af !important;
 }
 
-html.dark .typing-dot {
-  background-color: #cbd5e1 !important; /* slate-300 */
+/* Estilos para el botón de enviar */
+.dark .send-button {
+  background-color: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+.dark .send-button:hover:not(:disabled) {
+  background-color: #4338ca !important;
+}
+
+.dark .send-button:disabled {
+  background-color: #374151 !important;
+  opacity: 0.7 !important;
+}
+
+/* Estilos para el indicador de escritura */
+.dark .typing-indicator {
+  background-color: #1e293b !important;
+  color: #d1d5db !important;
+}
+
+/* Estilos para los iconos de navegación */
+.dark .navigation-icon-item {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .tooltip-text {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Estilos para los iconos sociales */
+.dark .social-icon {
+  background-color: #4f46e5 !important;
+}
+
+.dark .social-icon:hover {
+  background-color: #4338ca !important;
+}
+
+/* Estilos para el markdown en modo oscuro */
+.dark .markdown-content {
+  color: #ffffff !important;
+}
+
+.dark .markdown-content h1,
+.dark .markdown-content h2,
+.dark .markdown-content h3,
+.dark .markdown-content h4,
+.dark .markdown-content h5,
+.dark .markdown-content h6 {
+  color: #ffffff !important;
+}
+
+.dark .markdown-content p {
+  color: #ffffff !important;
+}
+
+.dark .markdown-content ul,
+.dark .markdown-content ol {
+  color: #ffffff !important;
+}
+
+.dark .markdown-content li {
+  color: #ffffff !important;
+}
+
+.dark .markdown-content ul li::marker,
+.dark .markdown-content ol li::marker {
+  color: #ffffff !important;
+}
+
+.dark .markdown-content table {
+  border-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.dark .markdown-content th {
+  background-color: #374151 !important;
+  color: #ffffff !important;
+  border-color: #4b5563 !important;
+}
+
+.dark .markdown-content td {
+  color: #ffffff !important;
+  border-color: #4b5563 !important;
+}
+
+.dark .markdown-content code {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark .markdown-content pre {
+  background-color: #1e293b !important;
+  border-color: #374151 !important;
+}
+
+.dark .markdown-content blockquote {
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
 }
