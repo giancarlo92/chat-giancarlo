@@ -6,6 +6,7 @@ interface Props {
 const { title = "Giancarlo Zevallos - AI Engineer & Automation Expert" } = Astro.props;
 import ThemeToggle from '../components/ThemeToggle';
 import SocialIcons from '../components/SocialIcons';
+import CollapseIndices from '../components/CollapseIndices';
 import '../styles/darkMode.css';
 import '../styles/chatDarkMode.css';
 import '../styles/modernScroll.css';
@@ -36,6 +37,7 @@ import '../styles/modernScroll.css';
     <div class="fixed top-4 right-4 z-50 flex flex-col gap-3">
       <ThemeToggle client:load />
       <SocialIcons client:load className="right-social" />
+      <CollapseIndices client:load />
     </div>
     <slot />
     

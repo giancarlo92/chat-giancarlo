@@ -674,3 +674,38 @@
 .dark .send-button:hover:not(:disabled) {
   opacity: 0.9;
 }
+
+/* Estilos para el botón de colapsar índices */
+.collapse-indices-container {
+  position: relative;
+}
+
+.collapse-indices-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f4ff;
+  color: #3245ff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.collapse-indices-button:hover {
+  background-color: #e0e7ff;
+  transform: scale(1.05);
+}
+
+.collapse-indices-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Estilos para cuando los índices están ocultos */
+.navigation-icons-floating.hidden {
+  display: none;
+}

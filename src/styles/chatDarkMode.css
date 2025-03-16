@@ -206,6 +206,17 @@ html.dark {
   color: var(--color-text-primary);
 }
 
+/* Estilos para el botón de colapsar índices en modo oscuro */
+.dark .collapse-indices-button {
+  background-color: #374151;
+  color: #f9fafb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark .collapse-indices-button:hover {
+  background-color: #4b5563;
+}
+
 /* Forzar la aplicación de estilos para elementos de entrada */
 .dark input,
 .dark textarea,

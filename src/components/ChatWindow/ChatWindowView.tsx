@@ -154,12 +154,12 @@ export default function ChatWindowView(props: ChatWindowProps) {
             onChange={handleInputChange}
             placeholder="Escribe tu pregunta..."
             className="chat-input"
-            disabled={isTypingQuestion || isTypingAnswer || allQuestionsCompleted}
+            disabled={isTypingQuestion || isTypingAnswer}
           />
           <button
             type="submit"
             className="send-button"
-            disabled={!userInput.trim() || isTypingQuestion || isTypingAnswer || allQuestionsCompleted}
+            disabled={!userInput.trim() || isTypingQuestion || isTypingAnswer}
           >
             Enviar
           </button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import type { ChatQA } from '../../data/chatData';
 import '../../styles/darkMode.css';
 
@@ -17,6 +17,31 @@ export default function NavigationIconsView({
   activeQuestionId = null,
   visibleIcons = []
 }: NavigationIconsProps) {
+  // Estado para controlar la visibilidad de los iconos
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Escuchar el evento de cambio de visibilidad
+  useEffect(() => {
+    const handleVisibilityChange = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      setIsVisible(customEvent.detail.isVisible);
+    };
+
+    // Cargar el estado inicial desde localStorage
+    const savedState = localStorage.getItem('indicesVisible');
+    if (savedState !== null) {
+      setIsVisible(savedState === 'true');
+    }
+
+    // Suscribirse al evento
+    document.addEventListener('indicesVisibilityChanged', handleVisibilityChange);
+
+    // Limpiar el event listener cuando el componente se desmonte
+    return () => {
+      document.removeEventListener('indicesVisibilityChanged', handleVisibilityChange);
+    };
+  }, []);
+
   // Función para renderizar el icono correcto según el nombre
   const renderIcon = (iconName: string) => {
     switch (iconName) {
@@ -56,7 +81,7 @@ export default function NavigationIconsView({
       case 'folder':
         return (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-            <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
+            <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3v.205c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
           </svg>
         );
       case 'chip':
@@ -66,7 +91,7 @@ export default function NavigationIconsView({
             <path fillRule="evenodd" d="M8.25 2.25A.75.75 0 019 3v.75h2.25V3a.75.75 0 011.5 0v.75H15V3a.75.75 0 011.5 0v.75h.75a3 3 0 013 3v.75H21A.75.75 0 0121 9h-.75v2.25H21a.75.75 0 010 1.5h-.75V15H21a.75.75 0 010 1.5h-.75v.75a3 3 0 01-3 3h-.75V21a.75.75 0 01-1.5 0v-.75h-2.25V21a.75.75 0 01-1.5 0v-.75H9V21a.75.75 0 01-1.5 0v-.75h-.75a3 3 0 01-3-3v-.75H3A.75.75 0 013 15h.75v-2.25H3a.75.75 0 010-1.5h.75V9H3a.75.75 0 010-1.5h.75v-.75a3 3 0 013-3h.75V3a.75.75 0 01.75-.75zM6 6.75A.75.75 0 016.75 6h10.5a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V6.75z" clipRule="evenodd" />
           </svg>
         );
-      case 'language':
+      case 'globe':
         return (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
             <path fillRule="evenodd" d="M9 2.25a.75.75 0 01.75.75v1.506a49.38 49.38 0 015.343.371.75.75 0 11-.186 1.489c-.66-.083-1.323-.151-1.99-.206a18.67 18.67 0 01-2.969 6.323c.317.384.65.753.998 1.107a.75.75 0 11-1.07 1.052A18.902 18.902 0 019 13.687a18.823 18.823 0 01-5.656 4.482.75.75 0 11-.688-1.333 17.323 17.323 0 005.396-4.353A18.72 18.72 0 015.89 8.598a.75.75 0 011.388-.568A17.21 17.21 0 009 11.224a17.17 17.17 0 002.391-5.165 48.038 48.038 0 00-8.298.307.75.75 0 01-.186-1.489 49.159 49.159 0 015.343-.371V3A.75.75 0 019 2.25zM15.75 9a.75.75 0 01.68.433l5.25 11.25a.75.75 0 01-1.36.634l-1.198-2.567h-6.744l-1.198 2.567a.75.75 0 01-1.36-.634l5.25-11.25A.75.75 0 0115.75 9zm-2.672 8.25h5.344l-2.672-5.726-2.672 5.726z" clipRule="evenodd" />
@@ -85,6 +110,7 @@ export default function NavigationIconsView({
             <path fillRule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97z" clipRule="evenodd" />
           </svg>
         );
+      case 'question':
       default:
         return (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -93,6 +119,11 @@ export default function NavigationIconsView({
         );
     }
   };
+
+  // Si los iconos no son visibles, no renderizar nada
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className={`navigation-icons-floating ${className}`}>
