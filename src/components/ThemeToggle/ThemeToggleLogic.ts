@@ -12,15 +12,37 @@ export function useThemeToggle(_props: ThemeToggleProps) {
     // Si hay un tema guardado, usarlo
     if (savedTheme) {
       setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      applyTheme(savedTheme);
     } 
     // Si no hay tema guardado, detectar preferencia del sistema
     else {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setTheme(prefersDark ? 'dark' : 'light');
-      document.documentElement.classList.toggle('dark', prefersDark);
+      applyTheme(prefersDark ? 'dark' : 'light');
     }
   }, []);
+
+  // Función para aplicar el tema inmediatamente
+  const applyTheme = (newTheme: Theme) => {
+    // Eliminar todas las transiciones temporalmente
+    document.body.style.setProperty('transition', 'none');
+    document.querySelectorAll('button, input, textarea, .user-message, .bot-message, .message-input')
+      .forEach(el => {
+        if (el instanceof HTMLElement) {
+          el.style.transition = 'none';
+        }
+      });
+    
+    // Aplicar clase al elemento html para que los estilos dark: funcionen
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
+    // Forzar reflow para aplicar los cambios inmediatamente
+    document.body.offsetHeight;
+  };
 
   // Función para cambiar el tema
   const toggleTheme = () => {
@@ -30,15 +52,8 @@ export function useThemeToggle(_props: ThemeToggleProps) {
     // Guardar en localStorage
     localStorage.setItem('theme', newTheme);
     
-    // Aplicar clase al elemento html para que los estilos dark: funcionen
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    
-    // Forzar la actualización de los estilos
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    // Aplicar el tema inmediatamente
+    applyTheme(newTheme);
   };
 
   return {

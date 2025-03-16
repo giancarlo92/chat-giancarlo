@@ -4,12 +4,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import TypingIndicator from '../TypingIndicator';
 import NavigationIcons from '../NavigationIcons';
-import SocialIcons from '../SocialIcons';
 import type { ChatWindowProps } from './ChatWindowTypes';
 import { useChatWindow } from './ChatWindowLogic';
 import '../../styles/darkMode.css';
 import '../../styles/chatDarkMode.css';
-import '../../styles/forceDarkMode.css';
 import '../../styles/modernScroll.css';
 import '../../styles/chatStyles.css';
 
@@ -48,9 +46,6 @@ export default function ChatWindowView(props: ChatWindowProps) {
         activeQuestionId={activeQuestionId}
         visibleIcons={visibleIcons}
       />
-      
-      {/* Iconos de redes sociales flotantes */}
-      <SocialIcons className="bottom-social" />
       
       {/* Contenido principal del chat */}
       <div className="chat-content">

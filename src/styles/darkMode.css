@@ -13,6 +13,19 @@
   --color-scrollbar-track: 243, 244, 246; /* gris muy claro */
   --color-scrollbar-thumb: 156, 163, 175; /* gris medio */
   --color-scrollbar-thumb-hover: 107, 114, 128; /* gris oscuro */
+  --color-markdown-heading: 17, 24, 39; /* casi negro */
+  --color-markdown-text: 17, 24, 39; /* casi negro */
+  --color-markdown-link: 37, 99, 235; /* azul */
+  --color-markdown-code-bg: 243, 244, 246; /* gris muy claro */
+  --color-markdown-code-text: 17, 24, 39; /* casi negro */
+  --color-markdown-blockquote: 107, 114, 128; /* gris */
+  --color-markdown-pre-bg: 243, 244, 246; /* gris muy claro */
+  --color-markdown-pre-border: 229, 231, 235; /* gris claro */
+  --color-markdown-marker: 37, 99, 235; /* azul */
+  --color-markdown-table-border: 229, 231, 235; /* gris claro */
+  --color-markdown-table-header: 243, 244, 246; /* gris muy claro */
+  --color-tooltip-bg: 0, 0, 0; /* negro */
+  --color-tooltip-text: 255, 255, 255; /* blanco */
 }
 
 html.dark {
@@ -28,6 +41,19 @@ html.dark {
   --color-scrollbar-track: 30, 41, 59; /* slate-800 */
   --color-scrollbar-thumb: 51, 65, 85; /* slate-700 */
   --color-scrollbar-thumb-hover: 71, 85, 105; /* slate-600 */
+  --color-markdown-heading: 248, 250, 252; /* slate-50 */
+  --color-markdown-text: 248, 250, 252; /* slate-50 */
+  --color-markdown-link: 147, 197, 253; /* azul claro */
+  --color-markdown-code-bg: 30, 41, 59; /* slate-800 */
+  --color-markdown-code-text: 226, 232, 240; /* slate-200 */
+  --color-markdown-blockquote: 203, 213, 225; /* slate-300 */
+  --color-markdown-pre-bg: 30, 41, 59; /* slate-800 */
+  --color-markdown-pre-border: 51, 65, 85; /* slate-700 */
+  --color-markdown-marker: 147, 197, 253; /* azul claro */
+  --color-markdown-table-border: 51, 65, 85; /* slate-700 */
+  --color-markdown-table-header: 30, 41, 59; /* slate-800 */
+  --color-tooltip-bg: 0, 0, 0; /* negro */
+  --color-tooltip-text: 248, 250, 252; /* slate-50 */
 }
 
 /* Estilos de componentes */
@@ -127,6 +153,11 @@ button {
   opacity: 0.9;
 }
 
+.send-button:disabled {
+  background: rgb(var(--color-text-secondary));
+  opacity: 0.7;
+}
+
 /* Estilos para los iconos de navegación */
 .navigation-icons-floating {
   position: fixed;
@@ -162,6 +193,131 @@ button {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos para el tooltip */
+.tooltip-text {
+  background-color: rgba(var(--color-tooltip-bg), 0.8);
+  color: rgb(var(--color-tooltip-text));
+}
+
+/* Estilos para los iconos sociales */
+.social-icon {
+  background-color: rgb(var(--color-accent-primary));
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.social-icon:hover {
+  background-color: rgb(var(--color-accent-secondary));
+}
+
+/* Estilos para el modo oscuro en botones colapsables */
+.collapse-button {
+  background-color: transparent;
+  color: rgb(var(--color-text-secondary));
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.collapse-button:hover {
+  color: rgb(var(--color-accent-primary));
+  background-color: rgba(var(--color-bg-secondary), 0.5);
+}
+
+/* Estilos para el indicador de escritura */
+.typing-indicator-container {
+  display: flex;
+  align-items: center;
+  color: rgb(var(--color-text-secondary));
+}
+
+/* Estilos para el contenido markdown */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  color: rgb(var(--color-markdown-heading));
+}
+
+.markdown-content p,
+.markdown-content li {
+  color: rgb(var(--color-markdown-text));
+}
+
+.markdown-content a {
+  color: rgb(var(--color-markdown-link));
+}
+
+.markdown-content code {
+  background-color: rgb(var(--color-markdown-code-bg));
+  color: rgb(var(--color-markdown-code-text));
+}
+
+.markdown-content pre {
+  background-color: rgb(var(--color-markdown-pre-bg));
+  border: 1px solid rgb(var(--color-markdown-pre-border));
+}
+
+.markdown-content ul li::marker,
+.markdown-content ol li::marker {
+  color: rgb(var(--color-markdown-marker));
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid rgb(var(--color-border));
+  color: rgb(var(--color-markdown-blockquote));
+}
+
+.markdown-content table {
+  border-color: rgb(var(--color-markdown-table-border));
+}
+
+.markdown-content th {
+  background-color: rgb(var(--color-markdown-table-header));
+  border-color: rgb(var(--color-markdown-table-border));
+}
+
+.markdown-content td {
+  border-color: rgb(var(--color-markdown-table-border));
+}
+
+/* Estilos para la página del chat */
+.chat-page {
+  background-color: rgb(var(--color-bg-primary));
+  color: rgb(var(--color-text-primary));
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilos para el formulario de entrada */
+.chat-input-form {
+  border-color: rgb(var(--color-border));
+  transition: border-color 0.3s;
+}
+
+.chat-input {
+  background-color: rgb(var(--color-bg-primary));
+  color: rgb(var(--color-text-primary));
+  border-color: rgb(var(--color-border));
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.chat-input:focus {
+  border-color: rgb(var(--color-accent-primary));
+  box-shadow: 0 0 0 2px rgba(var(--color-accent-primary), 0.2);
+}
+
+.chat-input::placeholder {
+  color: rgb(var(--color-text-secondary));
+}
+
+/* Título del mensaje */
+.message-title {
+  color: rgb(var(--color-text-primary));
+  transition: color 0.3s;
+}
+
 /* Estilos para el scroll personalizado */
 ::-webkit-scrollbar {
   width: 10px;
@@ -180,31 +336,4 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(var(--color-scrollbar-thumb-hover), 0.8);
-}
-
-/* Estilos para el modo oscuro en botones colapsables */
-.collapse-button {
-  background-color: transparent;
-  color: rgb(var(--color-text-secondary));
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s, transform 0.3s;
-}
-
-.collapse-button:hover {
-  color: rgb(var(--color-accent-primary));
-}
-
-/* Estilos para el indicador de escritura */
-.typing-indicator-container {
-  display: flex;
-  align-items: center;
-  color: rgb(var(--color-text-secondary));
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.typing-indicator-container span {
-  margin-left: 0.5rem;
 }

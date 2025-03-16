@@ -4,7 +4,6 @@ import type { TypingIndicatorProps } from './TypingIndicatorTypes';
 import { useTypingIndicator } from './TypingIndicatorLogic';
 import '../../styles/darkMode.css';
 import '../../styles/chatDarkMode.css';
-import '../../styles/forceDarkMode.css';
 
 export default function TypingIndicatorView(props: TypingIndicatorProps) {
   const { isBot } = useTypingIndicator(props);
