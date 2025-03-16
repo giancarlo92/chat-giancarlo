@@ -98,7 +98,7 @@ export default function ChatWindowView(props: ChatWindowProps) {
                       e.stopPropagation();
                       toggleMessageExpansion(message.id);
                     }}
-                    className={`collapse-button ${!message.isExpanded ? 'collapsed' : ''}`}
+                    className="collapse-button"
                     aria-label={message.isExpanded ? "Colapsar respuesta" : "Expandir respuesta"}
                   >
                     {message.isExpanded ? (

@@ -255,19 +255,33 @@
   border-radius: 50%;
   margin-right: 0.5rem;
   transition: all 0.3s ease;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .collapse-button:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.collapse-button.collapsed {
-  transform: rotate(180deg);
-}
-
 .collapse-button svg {
   width: 1.2rem;
   height: 1.2rem;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.dark .collapse-button {
+  color: #f9fafb !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.dark .collapse-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.collapse-button.collapsed {
+  transform: rotate(180deg);
 }
 
 /* Estados expandido y colapsado */
@@ -566,8 +580,7 @@
 }
 
 .collapse-all-button:hover {
-  background-color: var(--primary-color-dark);
-  transform: translateY(-2px);
+  background-color: var(--primary-color);
 }
 
 .collapse-all-button svg {
@@ -580,5 +593,5 @@
 }
 
 .dark .collapse-all-button:hover {
-  background-color: #4338ca;
+  background-color: #4f46e5;
 }
