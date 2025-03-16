@@ -11,9 +11,13 @@ export default function CollapseIndicesView({
   className = '',
   onToggle = () => {}
 }: CollapseIndicesProps) {
+  // Iniciar con los índices visibles por defecto
   const [isVisible, setIsVisible] = useState(true);
   
-  const toggleVisibility = () => {
+  const toggleVisibility = (e: React.MouseEvent) => {
+    // Detener la propagación del evento para evitar conflictos
+    e.stopPropagation();
+    
     const newState = !isVisible;
     setIsVisible(newState);
     onToggle(newState);
@@ -26,10 +30,15 @@ export default function CollapseIndicesView({
     document.dispatchEvent(event);
   };
   
-  // Cargar el estado inicial desde localStorage
+  // Cargar el estado inicial desde localStorage, pero asegurar que esté visible por defecto
   useEffect(() => {
     const savedState = localStorage.getItem('indicesVisible');
-    if (savedState !== null) {
+    // Si no hay estado guardado o es null, mantener visible por defecto
+    if (savedState === null) {
+      setIsVisible(true);
+      onToggle(true);
+      localStorage.setItem('indicesVisible', 'true');
+    } else {
       const parsedState = savedState === 'true';
       setIsVisible(parsedState);
       onToggle(parsedState);
@@ -39,8 +48,8 @@ export default function CollapseIndicesView({
   return (
     <>
       <button
-        onClick={toggleVisibility}
-        className={`social-toggle-button ${className}`}
+        onClick={(e) => toggleVisibility(e)}
+        className={`social-toggle-button indices-toggle-button ${className}`}
         aria-label={isVisible ? "Ocultar índices" : "Mostrar índices"}
       >
         {isVisible ? (

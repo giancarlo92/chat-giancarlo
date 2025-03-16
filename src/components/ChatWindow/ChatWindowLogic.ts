@@ -42,9 +42,19 @@ export function useChatWindow(_props: ChatWindowProps): ChatWindowLogicReturn {
     const messageWithQuestion = messages.find(msg => msg.question === question);
     
     if (messageWithQuestion) {
-      // Si la pregunta ya está en los mensajes, desplazarse a ella y alternar su expansión
+      // Si la pregunta ya está en los mensajes, desplazarse a ella
       scrollToMessage(messageWithQuestion.id);
-      toggleMessageExpansion(messageWithQuestion.id);
+      
+      // Si la sección está colapsada, expandirla, pero no colapsarla si ya está expandida
+      if (!messageWithQuestion.isExpanded) {
+        setMessages(prevMessages => 
+          prevMessages.map(msg => 
+            msg.id === messageWithQuestion.id 
+              ? { ...msg, isExpanded: true } 
+              : msg
+          )
+        );
+      }
     } else {
       // Si la pregunta no está en los mensajes, procesar hasta esa pregunta
       const questionIndex = chatData.findIndex(item => item.question === question);
