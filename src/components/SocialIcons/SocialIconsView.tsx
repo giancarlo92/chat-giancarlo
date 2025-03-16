@@ -1,13 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../../styles/darkMode.css';
 
 export interface SocialIconsProps {
   className?: string;
+  onToggle?: (isOpen: boolean) => void;
 }
 
-export default function SocialIconsView({ className = '' }: SocialIconsProps) {
+export default function SocialIconsView({ 
+  className = '',
+  onToggle = () => {}
+}: SocialIconsProps) {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const toggleMenu = () => {
+    const newState = !isOpen;
+    setIsOpen(newState);
+    onToggle(newState);
+    
+    // Guardar el estado en localStorage para persistencia
+    localStorage.setItem('socialIconsVisible', newState.toString());
+    
+    // Disparar un evento personalizado para notificar a otros componentes
+    const event = new CustomEvent('socialIconsVisibilityChanged', { detail: { isOpen: newState } });
+    document.dispatchEvent(event);
+  };
+  
+  // Cargar el estado inicial desde localStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem('socialIconsVisible');
+    if (savedState !== null) {
+      const parsedState = savedState === 'true';
+      setIsOpen(parsedState);
+      onToggle(parsedState);
+    }
+  }, [onToggle]);
   
   const socialLinks = [
     {
@@ -48,31 +75,31 @@ export default function SocialIconsView({ className = '' }: SocialIconsProps) {
     },
   ];
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <div className={`social-icons-container ${className}`}>
-      {/* Botón principal para abrir/cerrar el menú */}
-      <button 
-        className="social-toggle-button"
+    <>
+      <button
         onClick={toggleMenu}
-        aria-label="Redes sociales"
+        className={`social-toggle-button ${className}`}
+        aria-label={isOpen ? "Ocultar redes sociales" : "Mostrar redes sociales"}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-        </svg>
+        {isOpen ? (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+          </svg>
+        )}
       </button>
       
-      {/* Menú desplegable con los iconos de redes sociales */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
             className="social-icons-menu"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
             {socialLinks.map((link, index) => (
@@ -83,8 +110,8 @@ export default function SocialIconsView({ className = '' }: SocialIconsProps) {
                 rel="noopener noreferrer"
                 className="social-icon"
                 aria-label={link.name}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
               >
                 {link.icon}
@@ -93,6 +120,6 @@ export default function SocialIconsView({ className = '' }: SocialIconsProps) {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }

@@ -37,10 +37,10 @@ export default function CollapseIndicesView({
   }, [onToggle]);
   
   return (
-    <div className={`collapse-indices-container ${className}`}>
+    <>
       <button
         onClick={toggleVisibility}
-        className="collapse-indices-button"
+        className={`social-toggle-button ${className}`}
         aria-label={isVisible ? "Ocultar índices" : "Mostrar índices"}
       >
         {isVisible ? (
@@ -53,6 +53,6 @@ export default function CollapseIndicesView({
           </svg>
         )}
       </button>
-    </div>
+    </>
   );
 }

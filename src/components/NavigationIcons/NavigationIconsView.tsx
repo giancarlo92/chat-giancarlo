@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { ChatQA } from '../../data/chatData';
 import '../../styles/darkMode.css';
+import { motion } from 'framer-motion';
 
 export interface NavigationIconsProps {
   chatItems: ChatQA[];
@@ -126,7 +127,13 @@ export default function NavigationIconsView({
   }
 
   return (
-    <div className={`navigation-icons-floating ${className}`}>
+    <motion.div 
+      className={`navigation-icons-floating ${className}`}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+    >
       {chatItems.map((item, index) => {
         // Determinar si este ítem está activo basado en la pregunta
         const isActive = activeQuestionId === `message-${index}`;
@@ -136,7 +143,13 @@ export default function NavigationIconsView({
         if (!isVisible) return null;
         
         return (
-          <div key={`nav-icon-${index}`} className="navigation-tooltip">
+          <motion.div 
+            key={`nav-icon-${index}`} 
+            className="navigation-tooltip"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+          >
             <button
               onClick={() => onQuestionClick(item.question)}
               className={`navigation-icon-item ${isActive ? 'active-icon' : ''}`}
@@ -150,9 +163,9 @@ export default function NavigationIconsView({
               {item.icon && renderIcon(item.icon)}
             </button>
             <span className="tooltip-text">{item.question}</span>
-          </div>
+          </motion.div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }

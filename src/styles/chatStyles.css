@@ -262,7 +262,7 @@
   padding: 0.5rem 0.75rem;
   position: absolute;
   z-index: 1;
-  right: 125%;
+  left: 125%;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
@@ -274,15 +274,14 @@
 }
 
 /* Iconos flotantes de navegación */
-.right-navigation {
+.navigation-icons-floating {
   position: fixed;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
+  top: 180px; /* Ajustado para que comience justo después del botón de colapsar */
+  right: 15px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  z-index: 50;
+  gap: 10px;
+  z-index: 40;
 }
 
 /* Iconos flotantes de redes sociales */
@@ -300,67 +299,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.social-toggle-button {
-  background-color: white;
-  color: #333;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.dark .social-toggle-button {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-}
-
-.social-toggle-button:hover {
-  transform: scale(1.05);
-}
-
-.social-icons-menu {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  margin-top: 10px;
-  background-color: white;
-  border-radius: 8px;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.dark .social-icons-menu {
-  background-color: var(--color-bg-secondary);
-}
-
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  color: #333;
-}
-
-.dark .social-icon {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-}
-
-.social-icon:hover {
-  transform: scale(1.1);
 }
 
 /* Estilos para el botón de colapsar/expandir todas las secciones */
@@ -676,36 +614,271 @@
 }
 
 /* Estilos para el botón de colapsar índices */
-.collapse-indices-container {
-  position: relative;
+.collapse-indices-container,
+.collapse-indices-button {
+  display: none;
 }
 
-.collapse-indices-button {
+/* Iconos de redes sociales */
+.social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #f0f4ff;
-  color: #3245ff;
+  background-color: white !important;
+  color: #3245ff !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .social-icon {
+  background-color: #1a202c !important;
+  color: #a0aec0 !important;
+}
+
+.social-icon:hover {
+  transform: scale(1.05);
+  color: #bc52ee !important;
+}
+
+/* Estilos para el menú de iconos sociales */
+.social-icons-menu {
+  position: fixed;
+  right: 20px;
+  top: 90px; /* Posicionarlo debajo del botón de redes sociales */
+  background-color: white !important;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 45;
+  transition: all 0.3s ease !important;
+}
+
+.dark .social-icons-menu {
+  background-color: #2d3748 !important;
+  color: #a0aec0 !important;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white !important;
+  color: #3245ff !important;
   border: none;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease !important;
 }
 
-.collapse-indices-button:hover {
-  background-color: #e0e7ff;
-  transform: scale(1.05);
+.dark .social-icon {
+  background-color: #1a202c !important;
+  color: #a0aec0 !important;
 }
 
-.collapse-indices-button svg {
+.social-icon:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #bc52ee !important;
+}
+
+/* Estilos para los tooltips de navegación */
+.navigation-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  max-width: 200px;
+  background-color: rgba(var(--color-tooltip-bg), 0.8);
+  color: rgb(var(--color-tooltip-text));
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  position: absolute;
+  z-index: 1;
+  left: 125%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.navigation-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Estilos unificados para los botones de toggle */
+.social-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white !important;
+  color: #3245ff !important;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease !important;
+  position: relative;
+}
+
+.dark .social-toggle-button {
+  background-color: #2d3748 !important;
+  color: #a0aec0 !important;
+}
+
+.social-toggle-button:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #bc52ee !important;
+}
+
+.social-toggle-button svg {
   width: 20px;
   height: 20px;
+}
+
+/* Estilos para el menú de iconos sociales */
+.social-icons-menu {
+  position: fixed;
+  right: 20px;
+  top: 90px; /* Posicionarlo debajo del botón de redes sociales */
+  background-color: white !important;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 45;
+  transition: all 0.3s ease !important;
+}
+
+.dark .social-icons-menu {
+  background-color: #2d3748 !important;
+  color: #a0aec0 !important;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white !important;
+  color: #3245ff !important;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease !important;
+}
+
+.dark .social-icon {
+  background-color: #1a202c !important;
+  color: #a0aec0 !important;
+}
+
+.social-icon:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #bc52ee !important;
 }
 
 /* Estilos para cuando los índices están ocultos */
 .navigation-icons-floating.hidden {
   display: none;
+}
+
+/* Estilos unificados para los botones de toggle que se removieron accidentalmente */
+.social-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white !important;
+  color: #3245ff !important;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease !important;
+  position: relative;
+}
+
+.dark .social-toggle-button {
+  background-color: #2d3748 !important;
+  color: #a0aec0 !important;
+}
+
+.social-toggle-button:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #bc52ee !important;
+}
+
+.social-toggle-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Estilo para el menú de iconos sociales */
+.social-icons-menu {
+  position: fixed;
+  right: 20px;
+  top: 90px; /* Posicionarlo debajo del botón de redes sociales */
+  background-color: white !important;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 45;
+  transition: all 0.3s ease !important;
+}
+
+.dark .social-icons-menu {
+  background-color: #2d3748 !important;
+  color: #a0aec0 !important;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white !important;
+  color: #3245ff !important;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease !important;
+}
+
+.dark .social-icon {
+  background-color: #1a202c !important;
+  color: #a0aec0 !important;
+}
+
+.social-icon:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  color: #bc52ee !important;
 }
